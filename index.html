@@ -1,153 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Lower Third - Versículos OBS</title>
-  <!-- Fuentes inspiradas en la imagen -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;800;900&family=Montserrat:ital,wght@0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lower Third - Versículos OBS</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Tipografías formales inspiradas en el afiche -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    body {
-      width: 1920px;
-      height: 1080px;
-      overflow: hidden;
-      background: transparent; /* Transparente para OBS */
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      padding-bottom: 50px;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    /* Contenedor principal del banner */
-    .banner-container {
-      position: relative;
-      width: 1550px;
-      background: linear-gradient(135deg, rgba(8, 4, 4, 0.94) 0%, rgba(20, 6, 4, 0.92) 50%, rgba(10, 3, 3, 0.95) 100%);
-      backdrop-filter: blur(8px);
-      border-radius: 16px;
-      padding: 24px 45px;
-      border: 1px solid rgba(255, 75, 20, 0.35);
-      box-shadow: 
-        0 15px 40px rgba(0, 0, 0, 0.8),
-        0 0 35px rgba(230, 57, 23, 0.25),
-        inset 0 1px 1px rgba(255, 140, 60, 0.4);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      animation: fadeInSlide 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Línea incandescente decorativa superior e inferior */
-    .banner-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 10%;
-      right: 10%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #ff3700, #ff9d00, #ff3700, transparent);
-      box-shadow: 0 0 12px #ff4800;
-    }
-
-    .banner-container::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 20%;
-      right: 20%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #e62200, transparent);
-      box-shadow: 0 0 8px #e62200;
-    }
-
-    /* Fila superior: Letra cursiva de acento + Badge de referencia */
-    .header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .accent-title {
-      font-family: 'Alex Brush', cursive;
-      color: #ff914d;
-      font-size: 34px;
-      line-height: 1;
-      letter-spacing: 1px;
-      text-shadow: 0 0 10px rgba(255, 100, 30, 0.5);
-    }
-
-    /* Badge idéntico al de "MATEO 24:44" */
-    .verse-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 5px 22px;
-      border-radius: 50px;
-      border: 1.5px solid rgba(255, 255, 255, 0.7);
-      background: rgba(0, 0, 0, 0.6);
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      box-shadow: 0 0 10px rgba(255, 70, 0, 0.3);
-    }
-
-    /* Texto principal del versículo */
-    .verse-body {
-      font-size: 23px;
-      line-height: 1.45;
-      color: #f5f5f5;
-      font-weight: 400;
-      font-style: italic;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    }
-
-    .verse-body strong {
-      color: #ffffff;
-      font-style: normal;
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    /* Animación de entrada suave */
-    @keyframes fadeInSlide {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
-</head>
-<body>
 
-  <div class="banner-container">
-    <div class="header-row">
-      <!-- Palabra decorativa estilo 'Estad' -->
-      <span class="accent-title">Palabra de Dios</span>
-      
-      <!-- Cápsula con la cita bíblica -->
-      <div class="verse-badge">Mateo 24:44</div>
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding-bottom: 55px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* Contenedor más compacto y translúcido */
+      .banner-container {
+        position: relative;
+        width: 1180px; /* Reducido para que no sea tan ancho */
+        background: linear-gradient(
+          135deg,
+          rgba(10, 4, 3, 0.72) 0%,
+          rgba(26, 7, 3, 0.68) 50%,
+          rgba(12, 3, 2, 0.75) 100%
+        );
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-radius: 14px;
+        padding: 22px 36px;
+        border: 1px solid rgba(255, 80, 25, 0.35);
+        box-shadow:
+          0 12px 35px rgba(0, 0, 0, 0.65),
+          0 0 25px rgba(255, 60, 0, 0.18),
+          inset 0 1px 1px rgba(255, 120, 50, 0.35);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        animation: fadeInSlide 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* Líneas incandescentes sutiles superior e inferior */
+      .banner-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 15%;
+        right: 15%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #ff3b00,
+          #ff8c00,
+          #ff3b00,
+          transparent
+        );
+        box-shadow: 0 0 10px rgba(255, 65, 0, 0.8);
+      }
+
+      .banner-container::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 25%;
+        right: 25%;
+        height: 1.5px;
+        background: linear-gradient(90deg, transparent, #d42200, transparent);
+      }
+
+      /* Encabezado formal */
+      .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 8px;
+      }
+
+      /* Título formal en mayúsculas sobrias */
+      .formal-title {
+        font-family: "Cinzel", serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: #ff914d;
+        letter-spacing: 3.5px;
+        text-transform: uppercase;
+        text-shadow: 0 0 8px rgba(255, 100, 30, 0.4);
+      }
+
+      /* Badge idéntico al 'MATEO 24:44' del póster */
+      .verse-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 18px;
+        border-radius: 50px;
+        border: 1.5px solid rgba(255, 255, 255, 0.75);
+        background: rgba(0, 0, 0, 0.45);
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        box-shadow: 0 0 10px rgba(255, 60, 0, 0.25);
+      }
+
+      /* Texto bíblico formal y legible */
+      .verse-body {
+        font-size: 21px;
+        line-height: 1.45;
+        color: #f2f2f2;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+      }
+
+      .verse-body strong {
+        color: #ffffff;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+      }
+
+      @keyframes fadeInSlide {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner-container">
+      <div class="header-row">
+        <!-- Título sobrio y formal -->
+        <span class="formal-title">Santas Escrituras</span>
+
+        <!-- Cita bíblica -->
+        <div class="verse-badge">Mateo 24:44</div>
+      </div>
+
+      <!-- Texto del versículo -->
+      <p class="verse-body">
+        "Por tanto, <strong>estad también vosotros preparados</strong>; porque
+        el Hijo del Hombre vendrá a la hora que no pensáis."
+      </p>
     </div>
-
-    <!-- Texto del versículo (Edita aquí el contenido) -->
-    <p class="verse-body">
-      "Por tanto, <strong>estad también vosotros preparados</strong>; porque el Hijo del Hombre vendrá a la hora que no pensáis."
-    </p>
-  </div>
-
-</body>
+  </body>
 </html>
