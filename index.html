@@ -1,194 +1,217 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lower Third - Versículos OBS</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holyrics Overlay OBS</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    body {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 55px;
+      font-family: 'Montserrat', sans-serif;
+    }
 
-      body {
-        width: 1920px;
-        height: 1080px;
-        overflow: hidden;
-        background: transparent;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        padding-bottom: 55px;
-        font-family: "Montserrat", sans-serif;
-      }
+    .banner-container {
+      position: relative;
+      width: 1180px;
+      background: linear-gradient(
+        135deg, 
+        rgba(10, 4, 3, 0.72) 0%, 
+        rgba(26, 7, 3, 0.68) 50%, 
+        rgba(12, 3, 2, 0.75) 100%
+      );
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 14px;
+      padding: 22px 36px;
+      border: 1px solid rgba(255, 80, 25, 0.35);
+      box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.65),
+        0 0 25px rgba(255, 60, 0, 0.18),
+        inset 0 1px 1px rgba(255, 120, 50, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-      .banner-container {
-        position: relative;
-        width: 1180px;
-        background: linear-gradient(
-          135deg,
-          rgba(10, 4, 3, 0.72) 0%,
-          rgba(26, 7, 3, 0.68) 50%,
-          rgba(12, 3, 2, 0.75) 100%
-        );
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border-radius: 14px;
-        padding: 22px 36px;
-        border: 1px solid rgba(255, 80, 25, 0.35);
-        box-shadow:
-          0 12px 35px rgba(0, 0, 0, 0.65),
-          0 0 25px rgba(255, 60, 0, 0.18),
-          inset 0 1px 1px rgba(255, 120, 50, 0.35);
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        overflow: hidden; /* Mantiene el video dentro de las esquinas redondeadas */
-        animation: fadeInSlide 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      }
+    /* Clase activa para mostrar con animación */
+    .banner-container.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-      /* Video de fondo integrado */
-      .bg-video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        min-width: 100%;
-        min-height: 100%;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        pointer-events: none;
-        mix-blend-mode: screen; /* Elimina el fondo negro del video */
-        opacity: 0.55; /* Nivel de intensidad del fuego */
-        z-index: 1;
-      }
+    /* Video de fondo integrado */
+    .bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.55;
+      z-index: 1;
+    }
 
-      .content-wrapper {
-        position: relative;
-        z-index: 2; /* Pone el texto siempre al frente del video */
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
+    .content-wrapper {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-      /* Líneas de brillo */
-      .banner-container::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 15%;
-        right: 15%;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          #ff3b00,
-          #ff8c00,
-          #ff3b00,
-          transparent
-        );
-        box-shadow: 0 0 10px rgba(255, 65, 0, 0.8);
-        z-index: 3;
-      }
+    .banner-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff3b00, #ff8c00, #ff3b00, transparent);
+      box-shadow: 0 0 10px rgba(255, 65, 0, 0.8);
+      z-index: 3;
+    }
 
-      .banner-container::after {
-        content: "";
-        position: absolute;
-        bottom: -1px;
-        left: 25%;
-        right: 25%;
-        height: 1.5px;
-        background: linear-gradient(90deg, transparent, #d42200, transparent);
-        z-index: 3;
-      }
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 8px;
+    }
 
-      .header-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-        padding-bottom: 8px;
-      }
+    .formal-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #ff914d;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(255, 100, 30, 0.6);
+    }
 
-      .formal-title {
-        font-family: "Cinzel", serif;
-        font-weight: 700;
-        font-size: 15px;
-        color: #ff914d;
-        letter-spacing: 3.5px;
-        text-transform: uppercase;
-        text-shadow: 0 0 8px rgba(255, 100, 30, 0.6);
-      }
+    .verse-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 18px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      background: rgba(0, 0, 0, 0.5);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px rgba(255, 60, 0, 0.3);
+    }
 
-      .verse-badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 4px 18px;
-        border-radius: 50px;
-        border: 1.5px solid rgba(255, 255, 255, 0.8);
-        background: rgba(0, 0, 0, 0.5);
-        color: #ffffff;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        box-shadow: 0 0 10px rgba(255, 60, 0, 0.3);
-      }
+    .verse-body {
+      font-size: 21px;
+      line-height: 1.45;
+      color: #f2f2f2;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
+    }
+  </style>
+</head>
+<body>
 
-      .verse-body {
-        font-size: 21px;
-        line-height: 1.45;
-        color: #f2f2f2;
-        font-weight: 400;
-        letter-spacing: 0.2px;
-        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
-      }
+  <!-- Iframe oculto para capturar el contenido dinámico de Holyrics -->
+  <iframe id="holyricsFrame" src="http://192.168.57.1/view/text2" style="display: none;"></iframe>
 
-      .verse-body strong {
-        color: #ffffff;
-        font-weight: 700;
-        letter-spacing: 0.4px;
-      }
+  <div class="banner-container" id="banner">
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source src="fuego.mp4" type="video/mp4">
+    </video>
 
-      @keyframes fadeInSlide {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="banner-container">
-      <video class="bg-video" autoplay muted loop playsinline>
-        <source src="fuego.mp4" type="video/mp4" />
-      </video>
-
-      <div class="content-wrapper">
-        <div class="header-row">
-          <span class="formal-title">Santas Escrituras</span>
-          <div class="verse-badge">Mateo 24:44</div>
-        </div>
-
-        <p class="verse-body">
-          "Por tanto, <strong>estad también vosotros preparados</strong>; porque
-          el Hijo del Hombre vendrá a la hora que no pensáis."
-        </p>
+    <div class="content-wrapper">
+      <div class="header-row">
+        <span class="formal-title">Santas Escrituras</span>
+        <div class="verse-badge" id="verseBadge">Biblia</div>
       </div>
+      <p class="verse-body" id="verseText"></p>
     </div>
-  </body>
+  </div>
+
+  <script>
+    const banner = document.getElementById('banner');
+    const verseTextEl = document.getElementById('verseText');
+    const verseBadgeEl = document.getElementById('verseBadge');
+    const frame = document.getElementById('holyricsFrame');
+
+    let previousContent = "";
+
+    async function syncHolyrics() {
+      try {
+        // Intento 1: Lectura desde el iframe
+        let rawText = "";
+        if (frame.contentDocument && frame.contentDocument.body) {
+          rawText = frame.contentDocument.body.innerText.trim();
+        }
+
+        // Intento 2: Fetch si el iframe no responde
+        if (!rawText) {
+          const res = await fetch('http://192.168.57.1/view/text2');
+          if (res.ok) {
+            const html = await res.text();
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            rawText = doc.body.innerText.trim();
+          }
+        }
+
+        if (rawText !== previousContent) {
+          previousContent = rawText;
+
+          if (rawText.length > 0) {
+            // Separa si Holyrics incluye la cita bíblica entre paréntesis o al final
+            const match = rawText.match(/\(([^)]+)\)$/);
+            if (match) {
+              verseBadgeEl.textContent = match[1];
+              verseTextEl.textContent = `"${rawText.replace(match[0], '').trim()}"`;
+            } else {
+              verseBadgeEl.textContent = "Palabra de Dios";
+              verseTextEl.textContent = `"${rawText}"`;
+            }
+            banner.classList.add('active');
+          } else {
+            // Oculta el banner si Holyrics limpia la pantalla
+            banner.classList.remove('active');
+          }
+        }
+      } catch (err) {
+        // En espera de conexión o actualización
+      }
+    }
+
+    // Comprueba actualizaciones cada 400 ms
+    setInterval(syncHolyrics, 400);
+  </script>
+</body>
 </html>
