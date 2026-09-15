@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lower Third - Versículos OBS</title>
 
-    <!-- Tipografías formales inspiradas en el afiche -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -32,10 +31,9 @@
         font-family: "Montserrat", sans-serif;
       }
 
-      /* Contenedor más compacto y translúcido */
       .banner-container {
         position: relative;
-        width: 1180px; /* Reducido para que no sea tan ancho */
+        width: 1180px;
         background: linear-gradient(
           135deg,
           rgba(10, 4, 3, 0.72) 0%,
@@ -54,10 +52,36 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        overflow: hidden; /* Mantiene el video dentro de las esquinas redondeadas */
         animation: fadeInSlide 0.7s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
-      /* Líneas incandescentes sutiles superior e inferior */
+      /* Video de fondo integrado */
+      .bg-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+        mix-blend-mode: screen; /* Elimina el fondo negro del video */
+        opacity: 0.55; /* Nivel de intensidad del fuego */
+        z-index: 1;
+      }
+
+      .content-wrapper {
+        position: relative;
+        z-index: 2; /* Pone el texto siempre al frente del video */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      /* Líneas de brillo */
       .banner-container::before {
         content: "";
         position: absolute;
@@ -74,6 +98,7 @@
           transparent
         );
         box-shadow: 0 0 10px rgba(255, 65, 0, 0.8);
+        z-index: 3;
       }
 
       .banner-container::after {
@@ -84,18 +109,17 @@
         right: 25%;
         height: 1.5px;
         background: linear-gradient(90deg, transparent, #d42200, transparent);
+        z-index: 3;
       }
 
-      /* Encabezado formal */
       .header-row {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         padding-bottom: 8px;
       }
 
-      /* Título formal en mayúsculas sobrias */
       .formal-title {
         font-family: "Cinzel", serif;
         font-weight: 700;
@@ -103,33 +127,31 @@
         color: #ff914d;
         letter-spacing: 3.5px;
         text-transform: uppercase;
-        text-shadow: 0 0 8px rgba(255, 100, 30, 0.4);
+        text-shadow: 0 0 8px rgba(255, 100, 30, 0.6);
       }
 
-      /* Badge idéntico al 'MATEO 24:44' del póster */
       .verse-badge {
         display: inline-flex;
         align-items: center;
         padding: 4px 18px;
         border-radius: 50px;
-        border: 1.5px solid rgba(255, 255, 255, 0.75);
-        background: rgba(0, 0, 0, 0.45);
+        border: 1.5px solid rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.5);
         color: #ffffff;
         font-size: 13px;
         font-weight: 700;
         letter-spacing: 2px;
         text-transform: uppercase;
-        box-shadow: 0 0 10px rgba(255, 60, 0, 0.25);
+        box-shadow: 0 0 10px rgba(255, 60, 0, 0.3);
       }
 
-      /* Texto bíblico formal y legible */
       .verse-body {
         font-size: 21px;
         line-height: 1.45;
         color: #f2f2f2;
         font-weight: 400;
         letter-spacing: 0.2px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
       }
 
       .verse-body strong {
@@ -152,19 +174,21 @@
   </head>
   <body>
     <div class="banner-container">
-      <div class="header-row">
-        <!-- Título sobrio y formal -->
-        <span class="formal-title">Santas Escrituras</span>
+      <video class="bg-video" autoplay muted loop playsinline>
+        <source src="fuego.mp4" type="video/mp4" />
+      </video>
 
-        <!-- Cita bíblica -->
-        <div class="verse-badge">Mateo 24:44</div>
+      <div class="content-wrapper">
+        <div class="header-row">
+          <span class="formal-title">Santas Escrituras</span>
+          <div class="verse-badge">Mateo 24:44</div>
+        </div>
+
+        <p class="verse-body">
+          "Por tanto, <strong>estad también vosotros preparados</strong>; porque
+          el Hijo del Hombre vendrá a la hora que no pensáis."
+        </p>
       </div>
-
-      <!-- Texto del versículo -->
-      <p class="verse-body">
-        "Por tanto, <strong>estad también vosotros preparados</strong>; porque
-        el Hijo del Hombre vendrá a la hora que no pensáis."
-      </p>
     </div>
   </body>
 </html>
